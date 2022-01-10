@@ -360,13 +360,14 @@ if ($mode == 'app') {
 <img class="hover" style="height:22%;position:relative;" src="sys.img.png?rev=<?=time();?>" title="My Pictures" onclick="window.location.href = 'index.php?mode=glob&q=.png,.gif,.svg,.jpg';">
 <img class="hover" style="height:22%;position:relative;" src="sys.vid.png?rev=<?=time();?>" title="My Videos" onclick="window.location.href = 'index.php?mode=glob&q=.mp3,.aac,.flac,.mid';">
 <img class="hover" style="height:22%;position:relative;" src="sys.pkg.png?rev=<?=time();?>" title="Remove Software" onclick="window.location.href = 'index.php?mode=pkg';">
+<img class="hover" style="height:22%;position:relative;" src="sys.settings.png?rev=<?=time();?>" title="System Settings" onclick="window.location.href = 'index.php?mode=set';">
 <?php } ?>
 </div>
 <div class='bottom'>
 <img class="hover" style="height:84%;position:relative;" src="sys.start.png?rev=<?=time();?>" onclick="window.location.href = 'index.php?mode=menu';">
 <img class="hover" style="height:84%;position:relative;" src="sys.files.png?rev=<?=time();?>" onclick="window.location.href = 'index.php?mode=glob';">
 <img class="hover" style="height:84%;position:relative;" src="sys.back.png?rev=<?=time();?>" onclick="window.location.href = 'index.php?mode=view';">
-<img class="hover" style="height:84%;position:relative;" src="sys.sys.png?rev=<?=time();?>" onclick="window.location.href = 'index.php?mode=set';">
+<img class="hover" style="height:84%;position:relative;" src="sys.settings.png?rev=<?=time();?>" onclick="window.location.href = 'index.php?mode=set';">
 <img class="hover" style="height:84%;position:relative;" src="sys.upd.png?rev=<?=time();?>" onclick="get('i','from','windos','flossely');">
 </div>
 <audio id="audioPlayer">
