@@ -1,25 +1,20 @@
 <?php
 $mode = ($_REQUEST['mode']) ? $_REQUEST['mode'] : '';
+$background = (file_exists('background')) ? file_get_contents('background') : 'none';
 if ($mode == 'app') {
     $dir = '.';
-    $background = 'none';
     $list = str_replace($dir.'/','',(glob($dir.'/*.app')));
 } elseif ($mode == 'pkg') {
     $dir = '.';
-    $background = 'none';
     $list = str_replace($dir.'/','',(glob($dir.'/*.pkg')));
 } elseif ($mode == 'font') {
     $fontfile = $_REQUEST['name'];
-    $background = 'none';
 } elseif ($mode == 'watch') {
     $name = $_REQUEST['name'];
-    $background = 'none';
 } elseif ($mode == 'view') {
     $name = $_REQUEST['name'];
-    $background = (file_exists('background')) ? file_get_contents('background') : 'none';
 } elseif ($mode == 'glob') {
     $dir = ($_REQUEST['dir']) ? $_REQUEST['dir'] : '.';
-    $background = 'none';
     $q = ($_REQUEST['q']) ? $_REQUEST['q'] : '';
     if ($q != '') {
         if ($q == '/') {
@@ -50,7 +45,6 @@ if ($mode == 'app') {
     }
 } else {
     $dir = '.';
-    $background = 'none';
 }
 ?>
 <html>
