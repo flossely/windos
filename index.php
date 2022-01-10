@@ -338,6 +338,10 @@ if ($mode == 'app') {
 <p align='center' class='userDefine'>0 1 2 3 4 5 6 7 8 9 A B C D E F G H I J K L M N O P Q R S T U V W X Y Z a b c d e f g h i j k l m n o p q r s t u v w x y z</p>
 <?php } elseif ($mode == 'watch') { ?>
 <video style="width:100%;height:100%;" id="video" src="<?=$name;?>" controls autoplay="yes">
+<?php } elseif ($mode == 'set') { ?>
+<textarea id="backImage" onkeydown="if (event.keyCode == 13) {
+    set('background', this.value);
+}"><?=$background;?></textarea>
 <?php } elseif ($mode == 'menu') { ?>
 <img class="hover" style="height:22%;position:relative;" src="sys.files.png?rev=<?=time();?>" title="File Explorer" onclick="window.location.href = 'index.php?mode=glob';">
 <img class="hover" style="height:22%;position:relative;" src="sys.setup.png?rev=<?=time();?>" title="Install Software" onclick="window.location.href = 'index.php?mode=get';">
