@@ -179,10 +179,10 @@ input, select, textarea {
 window.onload = function() {
 <?php if ($mode == 'glob') { ?>
     document.getElementById('search').focus();
-<?php } else { ?>
-    document.getElementById('enterSeq').focus();
 <?php } elseif ($mode == 'edit') { ?>
     countText();
+<?php } else { ?>
+    document.getElementById('enterSeq').focus();
 <?php } ?>
 }
 function find() {
