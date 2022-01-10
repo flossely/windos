@@ -346,9 +346,11 @@ if ($mode == 'app') {
 <?php } elseif ($mode == 'watch') { ?>
 <video style="width:100%;height:100%;" id="video" src="<?=$name;?>" controls autoplay="yes">
 <?php } elseif ($mode == 'set') { ?>
-<textarea id="backImage" onkeydown="if (event.keyCode == 13) {
+<p align='center'>
+<textarea id="backImage" style="width:45%;height:36%;position:relative;" onkeydown="if (event.keyCode == 13) {
     set('background', this.value);
 }"><?=$background;?></textarea>
+</p>
 <?php } elseif ($mode == 'menu') { ?>
 <img class="hover" style="height:22%;position:relative;" src="sys.files.png?rev=<?=time();?>" title="File Explorer" onclick="window.location.href = 'index.php?mode=glob';">
 <img class="hover" style="height:22%;position:relative;" src="sys.setup.png?rev=<?=time();?>" title="Install Software" onclick="window.location.href = 'index.php?mode=get';">
