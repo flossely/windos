@@ -101,7 +101,7 @@ input, select, textarea {
     border: none;
     position: absolute;
     background-image: url(<?=$background;?>);
-    background-size: 100% auto;
+    background-size: 90% auto;
     background-repeat: no-repeat;
     width: 96%;
     height: 70%;
