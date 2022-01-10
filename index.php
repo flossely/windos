@@ -388,7 +388,7 @@ if ($mode == 'app') {
 <img class="hover" style="height:22%;position:relative;" src="sys.txt.png?rev=<?=time();?>" title="My Documents" onclick="window.location.href = 'index.php?mode=glob&q=.txt,.pdf,.odt,.doc';">
 <img class="hover" style="height:22%;position:relative;" src="sys.aud.png?rev=<?=time();?>" title="My Music" onclick="window.location.href = 'index.php?mode=glob&q=.mp3,.aac,.flac,.mid';">
 <img class="hover" style="height:22%;position:relative;" src="sys.img.png?rev=<?=time();?>" title="My Pictures" onclick="window.location.href = 'index.php?mode=glob&q=.png,.gif,.svg,.jpg';">
-<img class="hover" style="height:22%;position:relative;" src="sys.vid.png?rev=<?=time();?>" title="My Videos" onclick="window.location.href = 'index.php?mode=glob&q=.mp3,.aac,.flac,.mid';">
+<img class="hover" style="height:22%;position:relative;" src="sys.vid.png?rev=<?=time();?>" title="My Videos" onclick="window.location.href = 'index.php?mode=glob&q=.mp4,.webm,.mkv';">
 <img class="hover" style="height:22%;position:relative;" src="sys.edit.png?rev=<?=time();?>" title="Notepad" onclick="window.location.href = 'index.php?mode=edit&name=file&lock=true';">
 <img class="hover" style="height:22%;position:relative;" src="sys.pkg.png?rev=<?=time();?>" title="Remove Software" onclick="window.location.href = 'index.php?mode=pkg';">
 <img class="hover" style="height:22%;position:relative;" src="sys.settings.png?rev=<?=time();?>" title="System Settings" onclick="window.location.href = 'index.php?mode=set';">
