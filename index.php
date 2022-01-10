@@ -353,6 +353,7 @@ if ($mode == 'app') {
 </p>
 <?php } elseif ($mode == 'menu') { ?>
 <img class="hover" style="height:22%;position:relative;" src="sys.files.png?rev=<?=time();?>" title="File Explorer" onclick="window.location.href = 'index.php?mode=glob';">
+<img class="hover" style="height:22%;position:relative;" src="sys.txt.png?rev=<?=time();?>" title="Fonts" onclick="window.location.href = 'index.php?mode=glob&q=.ttf,.otf,.ttc';">
 <img class="hover" style="height:22%;position:relative;" src="sys.setup.png?rev=<?=time();?>" title="Install Software" onclick="window.location.href = 'index.php?mode=get';">
 <img class="hover" style="height:22%;position:relative;"  src="sys.apps.png?rev=<?=time();?>" title="Installed Programs" onclick="window.location.href = 'index.php?mode=app';">
 <img class="hover" style="height:22%;position:relative;" src="sys.txt.png?rev=<?=time();?>" title="My Documents" onclick="window.location.href = 'index.php?mode=glob&q=.txt,.pdf,.odt,.doc';">
