@@ -352,6 +352,7 @@ if ($mode == 'app') {
 }"><?=$background;?></textarea>
 </p>
 <?php } elseif ($mode == 'menu') { ?>
+<img class="hover" style="height:22%;position:relative;" src="sys.back.png?rev=<?=time();?>" title="Background Preview" onclick="window.location.href = 'index.php?mode=view';">
 <img class="hover" style="height:22%;position:relative;" src="sys.files.png?rev=<?=time();?>" title="File Explorer" onclick="window.location.href = 'index.php?mode=glob';">
 <img class="hover" style="height:22%;position:relative;" src="sys.fon.png?rev=<?=time();?>" title="Fonts" onclick="window.location.href = 'index.php?mode=glob&q=.ttf,.otf,.ttc';">
 <img class="hover" style="height:22%;position:relative;" src="sys.setup.png?rev=<?=time();?>" title="Install Software" onclick="window.location.href = 'index.php?mode=get';">
