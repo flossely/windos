@@ -192,6 +192,19 @@ function find() {
     xmlhttp.open("GET","files.php?dir="+dir+"&q="+q,false);
     xmlhttp.send();
 }
+function set(name, content) {
+    var dataString = 'name=' + name + '&content=' + content;
+    $.ajax({
+        type: "POST",
+        url: "write.php",
+        data: dataString,
+        cache: false,
+        success: function(html) {
+            window.location.reload();
+        }
+    });
+    return false;
+}
 function del(name) {
     if (window.XMLHttpRequest) {
         xmlhttp=new XMLHttpRequest();
