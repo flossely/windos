@@ -371,6 +371,7 @@ if ($mode == 'app') {
 <img class="hover" style="height:84%;position:relative;" src="sys.back.png?rev=<?=time();?>" onclick="window.location.href = 'index.php?mode=view';">
 <img class="hover" style="height:84%;position:relative;" src="sys.settings.png?rev=<?=time();?>" onclick="window.location.href = 'index.php?mode=set';">
 <img class="hover" style="height:84%;position:relative;" src="sys.upd.png?rev=<?=time();?>" onclick="get('i','from','windos','flossely');">
+<img class="hover" style="height:84%;position:relative;" src="sys.exit.png?rev=<?=time();?>" onclick="window.location.href = '../';">
 </div>
 <audio id="audioPlayer">
 </body>
