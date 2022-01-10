@@ -228,7 +228,9 @@ function levelUp(dir) {
 </head>
 <body>
 <div class='top'>
-<img class="hover" style="height:84%;position:relative;" src="image.png?rev=<?=time();?>" onclick="window.location.href='index.php';">
+<p align='center'>
+<img class="hover" style="height:84%;position:relative;" src="logo.png?rev=<?=time();?>" onclick="window.location.href='index.php';">
+</p>
 </div>
 <div class='panel'>
 <?php
