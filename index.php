@@ -13,6 +13,12 @@ if ($mode == 'app') {
     $name = $_REQUEST['name'];
 } elseif ($mode == 'view') {
     $name = $_REQUEST['name'];
+} elseif ($mode == 'edit') {
+    $editname = $_REQUEST['name'];
+    $lock = $_REQUEST['lock'];
+    if ($lock != 'true') {
+        $content = file_get_contents($editname);
+    }
 } elseif ($mode == 'glob') {
     $dir = ($_REQUEST['dir']) ? $_REQUEST['dir'] : '.';
     $q = ($_REQUEST['q']) ? $_REQUEST['q'] : '';
@@ -167,6 +173,7 @@ input, select, textarea {
 </style>
 <script src="jquery.js"></script>
 <script src="base.js"></script>
+<script src="edit.js"></script>
 <script src="http://www.midijs.net/lib/midi.js"></script>
 <script>
 window.onload = function() {
@@ -174,6 +181,8 @@ window.onload = function() {
     document.getElementById('search').focus();
 <?php } else { ?>
     document.getElementById('enterSeq').focus();
+<?php } elseif ($mode == 'edit') { ?>
+    countText();
 <?php } ?>
 }
 function find() {
@@ -327,7 +336,7 @@ if ($mode == 'app') {
                 $type = 'Font';
             } elseif ($extension == 'txt' || $extension == 'csv' || $extension == 'md' || $extension == 'css' || $extension == 'js') {
                 $icon = 'sys.txt.png';
-                $link = "window.location.href='edit.php?name=".$dir.'/'.$value."&lock=true';";
+                $link = "window.location.href='index.php?mode=edit&name=".$dir.'/'.$value."&lock=true';";
                 $type = 'Text';
             } else {
                 $icon = 'sys.exe.png';
@@ -351,6 +360,25 @@ if ($mode == 'app') {
     set('background', this.value);
 }"><?=$background;?></textarea>
 </p>
+<?php } elseif ($mode == 'edit') { ?>
+<img class="actionIcon" src="sys.cl.png" id="newButton" onclick="var name = 'file'; window.location.href='index.php?mode=edit&name='+name;">
+<img class="actionIcon" src="sys.rd.png" id="openButton" onclick="var name = filename.value; window.location.href = 'index.php?mode=edit&name=' + name + '&lock=false';">
+<img class="actionIcon" src="sys.wr.png" id="saveButton" onclick="save();">
+<img class="actionIcon" src="sys.md.png" id="mkdirButton" onclick="var name = filename.value; mkdir(name);">
+<img class="actionIcon" src="sys.mv.png" id="moveButton" onclick="var name = filename.value; var to = doto.value; move(name, to);">
+<img class="actionIcon" src="sys.cp.png" id="copyButton" onclick="var name = filename.value; var to = doto.value; copy(name, to);">
+<img class="actionIcon" src="sys.rm.png" id="deleteButton" onclick="var name = filename.value; del(name);">
+<img class="actionIcon" src="sys.home.png" id="homeButton" onclick="window.location.href = 'index.php';"><br>
+<label>Filename: </label>
+<input class="text" size=30 id="filename" style="width:38%;" type="text" value="<?=$editname;?>">
+<input class="text" size=30 id="doto" style="width:38%;" type="text" value="">
+<textarea class="text" id="content" style="width:100%;height:70%;" oninput="countText();"><?=$content;?></textarea><br>
+<input class="text" size=30 id="findbox" style="width:36%;" type="text" value="">
+<label> to </label>
+<input class="text" size=30 id="replacebox" style="width:36%;" type="text" value="">
+<input type="button" class="actionButton" value=">" id="replaceButton" onclick="replaceText(findbox.value); countText();">
+<br>
+<label id="statusBar" style="width:98%;"></label>
 <?php } elseif ($mode == 'menu') { ?>
 <img class="hover" style="height:22%;position:relative;" src="sys.back.png?rev=<?=time();?>" title="Background Preview" onclick="window.location.href = 'index.php?mode=view';">
 <img class="hover" style="height:22%;position:relative;" src="sys.files.png?rev=<?=time();?>" title="File Explorer" onclick="window.location.href = 'index.php?mode=glob';">
