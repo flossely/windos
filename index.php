@@ -1,6 +1,5 @@
 <?php
 $mode = ($_REQUEST['mode']) ? $_REQUEST['mode'] : '';
-$background = (file_exists('background')) ? file_get_contents('background') : 'none';
 if ($mode == 'app') {
     $dir = '.';
     $list = str_replace($dir.'/','',(glob($dir.'/*.app')));
@@ -106,7 +105,7 @@ input, select, textarea {
 .panel {
     border: none;
     position: absolute;
-    background-image: url(<?=$background;?>);
+    background-image: none;
     background-size: auto 92%;
     background-repeat: no-repeat;
     width: 96%;
@@ -185,73 +184,6 @@ window.onload = function() {
     document.getElementById('enterSeq').focus();
 <?php } ?>
 }
-function find() {
-    var dir = search.name;
-    var q = search.value;
-    if (window.XMLHttpRequest) {
-        xmlhttp=new XMLHttpRequest();
-    } else {
-        xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
-    }
-    xmlhttp.onreadystatechange=function() {
-        if (this.readyState==4 && this.status==200) {
-            window.location.href = "files.php?dir="+dir+"&q="+q;
-        }
-    }
-    xmlhttp.open("GET","files.php?dir="+dir+"&q="+q,false);
-    xmlhttp.send();
-}
-function set(name, content) {
-    var dataString = 'name=' + name + '&content=' + content;
-    $.ajax({
-        type: "POST",
-        url: "write.php",
-        data: dataString,
-        cache: false,
-        success: function(html) {
-            window.location.reload();
-        }
-    });
-    return false;
-}
-function del(name) {
-    if (window.XMLHttpRequest) {
-        xmlhttp=new XMLHttpRequest();
-    } else {
-        xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
-    }
-    xmlhttp.onreadystatechange=function() {
-        if (this.readyState==4 && this.status==200) {
-            document.location.reload();
-        }
-    }
-    xmlhttp.open("GET","delete.php?name="+name,false);
-    xmlhttp.send();
-}
-function playAudio(name) {
-    audioPlayer.src = name;
-    audioPlayer.play();
-}
-function pauseAudio() {
-    audioPlayer.pause();
-}
-function playMIDI(id) {
-    MIDIjs.play(id);
-}
-function pauseMIDI(id) {
-    MIDIjs.pause(id);
-}
-function levelUp(dir) {
-    if (dir.toString('').includes('/')) {
-        var split = dir.toString('').split('/');
-        var count = split.length;
-        var last = count - 1;
-        var link = dir.toString('').replace('/' + split[last], '');
-    } else {
-        var link = dir;
-    }
-    window.location.href = 'files.php?dir=' + link;
-}
 </script>
 </head>
 <body>
@@ -287,7 +219,7 @@ if ($mode == 'app') {
         $pkgCreated = $pkgHeadExp[4];
         $pkgDescription = $pkgHeadExp[5];
 ?>
-<img class="hover" style="height:18%;position:relative;" src="sys.pkg.png?rev=<?=time();?>" name="<?=$pkgName;?>" title="<?=$pkgName;?>" onclick="get('d', this.name, 'from', 'here');">
+<img class="hover" style="height:18%;position:relative;" src="sys.pkg.png?rev=<?=time();?>" name="<?=$pkgName;?>" title="<?=$pkgName;?>" onclick="get('d', '', this.name, 'from', '', 'here');">
 <?php
 }} elseif ($mode == 'glob') {
     foreach ($list as $key=>$value) {
@@ -307,7 +239,7 @@ if ($mode == 'app') {
                 $type = 'Image';
             } elseif ($extension == 'pkg') {
                 $icon = 'sys.pkg.png';
-                $link = "get('d', '".$basename."', 'from', 'here');";
+                $link = "get('d', '', '".$basename."', 'from', '', 'here');";
                 $type = 'Package';
             } elseif ($extension == 'app') {
                 $appOpen = file_get_contents($value);
@@ -348,26 +280,20 @@ if ($mode == 'app') {
 <img class="hover" style="height:18%;position:relative;" src="<?=$icon;?>?rev=<?=time();?>" name="<?=$value;?>" title="<?=$value;?>" onclick="<?=$link;?>">
 <?php }} elseif ($mode == 'get') { ?>
 <p align='center'>Execute GET sequence command:<br><input type='text' style="width:45%;position:relative;" value='' onkeydown="if (event.keyCode == 13) {
-    seq(this.value);
+    eval(this.value);
 }"></p>
 <?php } elseif ($mode == 'font') { ?>
 <p align='center' class='userDefine'>0 1 2 3 4 5 6 7 8 9 A B C D E F G H I J K L M N O P Q R S T U V W X Y Z a b c d e f g h i j k l m n o p q r s t u v w x y z</p>
 <?php } elseif ($mode == 'watch') { ?>
 <video style="width:100%;height:100%;" id="video" src="<?=$name;?>" controls autoplay="yes">
-<?php } elseif ($mode == 'set') { ?>
-<p align='center'>
-<textarea id="backImage" style="width:45%;height:36%;position:relative;" onkeydown="if (event.keyCode == 13) {
-    set('background', this.value);
-}"><?=$background;?></textarea>
-</p>
 <?php } elseif ($mode == 'edit') { ?>
 <img class="actionIcon" src="sys.cl.png" id="newButton" onclick="var name = 'file'; window.location.href='index.php?mode=edit&name='+name;">
 <img class="actionIcon" src="sys.rd.png" id="openButton" onclick="var name = filename.value; window.location.href = 'index.php?mode=edit&name=' + name + '&lock=false';">
 <img class="actionIcon" src="sys.wr.png" id="saveButton" onclick="save();">
-<img class="actionIcon" src="sys.md.png" id="mkdirButton" onclick="var name = filename.value; mkdir(name);">
-<img class="actionIcon" src="sys.mv.png" id="moveButton" onclick="var name = filename.value; var to = doto.value; move(name, to);">
-<img class="actionIcon" src="sys.cp.png" id="copyButton" onclick="var name = filename.value; var to = doto.value; copy(name, to);">
-<img class="actionIcon" src="sys.rm.png" id="deleteButton" onclick="var name = filename.value; del(name);">
+<img class="actionIcon" src="sys.md.png" id="mkdirButton" onclick="var name = filename.value; mkdir(name, false);">
+<img class="actionIcon" src="sys.mv.png" id="moveButton" onclick="var name = filename.value; var to = doto.value; move(name, to, false);">
+<img class="actionIcon" src="sys.cp.png" id="copyButton" onclick="var name = filename.value; var to = doto.value; copy(name, to, false);">
+<img class="actionIcon" src="sys.rm.png" id="deleteButton" onclick="var name = filename.value; del(name, false);">
 <img class="actionIcon" src="sys.home.png" id="homeButton" onclick="window.location.href = 'index.php';"><br>
 <label>Filename: </label>
 <input class="text" size=30 id="filename" style="width:38%;" type="text" value="<?=$editname;?>">
@@ -398,7 +324,7 @@ if ($mode == 'app') {
 <img class="hover" style="height:84%;position:relative;" src="sys.start.png?rev=<?=time();?>" onclick="window.location.href = 'index.php?mode=menu';">
 <img class="hover" style="height:84%;position:relative;" src="sys.back.png?rev=<?=time();?>" onclick="window.location.href = 'index.php?mode=view';">
 <img class="hover" style="height:84%;position:relative;" src="sys.settings.png?rev=<?=time();?>" onclick="window.location.href = 'index.php?mode=set';">
-<img class="hover" style="height:84%;position:relative;" src="sys.upd.png?rev=<?=time();?>" onclick="get('i','from','windos','flossely');">
+<img class="hover" style="height:84%;position:relative;" src="sys.upd.png?rev=<?=time();?>" onclick="get('i','','from','windos','','flossely');">
 <img class="hover" style="height:84%;position:relative;" src="sys.exit.png?rev=<?=time();?>" onclick="window.location.href = '../';">
 </div>
 <audio id="audioPlayer">
