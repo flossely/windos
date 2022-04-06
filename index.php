@@ -292,6 +292,10 @@ if ($mode == 'app') {
 <p align='center' class='userDefine'>0 1 2 3 4 5 6 7 8 9 A B C D E F G H I J K L M N O P Q R S T U V W X Y Z a b c d e f g h i j k l m n o p q r s t u v w x y z</p>
 <?php } elseif ($mode == 'watch') { ?>
 <video style="width:100%;height:100%;" id="video" src="<?=$name;?>" controls autoplay="yes">
+<?php } elseif ($mode == 'set') { ?>
+<p align="center">
+<input type='button' id="muteSound" onmouseover="playAudio(soundPlayer, 'default.flac?rev=<?=time();?>');" name="<?=$sounds;?>" value="<?php if ($sounds) { ?>Mute<?php } else { ?>Unmute<?php } ?>" onclick="mute(muteSound.name);">
+</p>
 <?php } elseif ($mode == 'edit') { ?>
 <img class="actionIcon" onmouseover="playAudio(soundPlayer, 'default.flac');" src="sys.cl.png?rev=<?=time();?>" id="newButton" onclick="var name = 'file'; window.location.href='index.php?mode=edit&name='+name;">
 <img class="actionIcon" onmouseover="playAudio(soundPlayer, 'default.flac');" src="sys.rd.png?rev=<?=time();?>" id="openButton" onclick="var name = filename.value; window.location.href = 'index.php?mode=edit&name=' + name + '&lock=false';">
