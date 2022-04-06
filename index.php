@@ -1,4 +1,9 @@
 <?php
+if (file_exists('sounds')) {
+    $sounds = boolval(file_get_contents('sounds'));
+} else {
+    $sounds = false;
+}
 $mode = ($_REQUEST['mode']) ? $_REQUEST['mode'] : '';
 if ($mode == 'app') {
     $dir = '.';
@@ -172,6 +177,7 @@ input, select, textarea {
 </style>
 <script src="jquery.js"></script>
 <script src="base.js"></script>
+<script src="file.js"></script>
 <script src="edit.js"></script>
 <script src="http://www.midijs.net/lib/midi.js"></script>
 <script>
@@ -189,7 +195,7 @@ window.onload = function() {
 <body>
 <div class='top'>
 <p align='center'>
-<img class="hover" style="height:70%;position:relative;" src="logo.png?rev=<?=time();?>" onclick="window.location.href='index.php';">
+<img class="hover" onmouseover="playAudio(soundPlayer, 'default.flac');" style="height:70%;position:relative;" src="logo.png?rev=<?=time();?>" onclick="window.location.href='index.php';">
 </p>
 </div>
 <div class='panel'>
@@ -202,7 +208,7 @@ if ($mode == 'app') {
         $appIcon = (file_exists($appExp[1])) ? $appExp[1] : 'sys.app.png';
         $appAction = $appExp[2];
 ?>
-<img class="hover" style="height:18%;position:relative;" src="<?=$appIcon;?>" title="<?=$appTitle;?>" onclick="<?=$appAction;?>">
+<img class="hover" onmouseover="playAudio(soundPlayer, 'default.flac');" style="height:18%;position:relative;" src="<?=$appIcon;?>?rev=<?=time();?>" title="<?=$appTitle;?>" onclick="<?=$appAction;?>">
 <?php
 }} elseif ($mode == 'pkg') {
     foreach ($list as $key=>$value) {
@@ -219,7 +225,7 @@ if ($mode == 'app') {
         $pkgCreated = $pkgHeadExp[4];
         $pkgDescription = $pkgHeadExp[5];
 ?>
-<img class="hover" style="height:18%;position:relative;" src="sys.pkg.png?rev=<?=time();?>" name="<?=$pkgName;?>" title="<?=$pkgName;?>" onclick="get('d', '', this.name, 'from', '', 'here');">
+<img class="hover" onmouseover="playAudio(soundPlayer, 'default.flac');" style="height:18%;position:relative;" src="sys.pkg.png?rev=<?=time();?>" name="<?=$pkgName;?>" title="<?=$pkgName;?>" onclick="get('d', '', this.name, 'from', '', 'here');">
 <?php
 }} elseif ($mode == 'glob') {
     foreach ($list as $key=>$value) {
@@ -277,7 +283,7 @@ if ($mode == 'app') {
             }
         }
 ?>
-<img class="hover" style="height:18%;position:relative;" src="<?=$icon;?>?rev=<?=time();?>" name="<?=$value;?>" title="<?=$value;?>" onclick="<?=$link;?>">
+<img class="hover" onmouseover="playAudio(soundPlayer, 'default.flac');" style="height:18%;position:relative;" src="<?=$icon;?>?rev=<?=time();?>" name="<?=$value;?>" title="<?=$value;?>" onclick="<?=$link;?>">
 <?php }} elseif ($mode == 'get') { ?>
 <p align='center'>Execute GET sequence command:<br><input type='text' style="width:45%;position:relative;" value='' onkeydown="if (event.keyCode == 13) {
     eval(this.value);
@@ -287,14 +293,14 @@ if ($mode == 'app') {
 <?php } elseif ($mode == 'watch') { ?>
 <video style="width:100%;height:100%;" id="video" src="<?=$name;?>" controls autoplay="yes">
 <?php } elseif ($mode == 'edit') { ?>
-<img class="actionIcon" src="sys.cl.png" id="newButton" onclick="var name = 'file'; window.location.href='index.php?mode=edit&name='+name;">
-<img class="actionIcon" src="sys.rd.png" id="openButton" onclick="var name = filename.value; window.location.href = 'index.php?mode=edit&name=' + name + '&lock=false';">
-<img class="actionIcon" src="sys.wr.png" id="saveButton" onclick="save();">
-<img class="actionIcon" src="sys.md.png" id="mkdirButton" onclick="var name = filename.value; mkdir(name, false);">
-<img class="actionIcon" src="sys.mv.png" id="moveButton" onclick="var name = filename.value; var to = doto.value; move(name, to, false);">
-<img class="actionIcon" src="sys.cp.png" id="copyButton" onclick="var name = filename.value; var to = doto.value; copy(name, to, false);">
-<img class="actionIcon" src="sys.rm.png" id="deleteButton" onclick="var name = filename.value; del(name, false);">
-<img class="actionIcon" src="sys.home.png" id="homeButton" onclick="window.location.href = 'index.php';"><br>
+<img class="actionIcon" onmouseover="playAudio(soundPlayer, 'default.flac');" src="sys.cl.png?rev=<?=time();?>" id="newButton" onclick="var name = 'file'; window.location.href='index.php?mode=edit&name='+name;">
+<img class="actionIcon" onmouseover="playAudio(soundPlayer, 'default.flac');" src="sys.rd.png?rev=<?=time();?>" id="openButton" onclick="var name = filename.value; window.location.href = 'index.php?mode=edit&name=' + name + '&lock=false';">
+<img class="actionIcon" onmouseover="playAudio(soundPlayer, 'default.flac');" src="sys.wr.png?rev=<?=time();?>" id="saveButton" onclick="save();">
+<img class="actionIcon" onmouseover="playAudio(soundPlayer, 'default.flac');" src="sys.md.png?rev=<?=time();?>" id="mkdirButton" onclick="var name = filename.value; mkdir(name, false);">
+<img class="actionIcon" onmouseover="playAudio(soundPlayer, 'default.flac');" src="sys.mv.png?rev=<?=time();?>" id="moveButton" onclick="var name = filename.value; var to = doto.value; move(name, to, false);">
+<img class="actionIcon" onmouseover="playAudio(soundPlayer, 'default.flac');" src="sys.cp.png?rev=<?=time();?>" id="copyButton" onclick="var name = filename.value; var to = doto.value; copy(name, to, false);">
+<img class="actionIcon" onmouseover="playAudio(soundPlayer, 'default.flac');" src="sys.rm.png?rev=<?=time();?>" id="deleteButton" onclick="var name = filename.value; del(name, false);">
+<img class="actionIcon" onmouseover="playAudio(soundPlayer, 'default.flac');" src="sys.home.png?rev=<?=time();?>" id="homeButton" onclick="window.location.href = 'index.php';"><br>
 <label>Filename: </label>
 <input class="text" size=30 id="filename" style="width:38%;" type="text" value="<?=$editname;?>">
 <input class="text" size=30 id="doto" style="width:38%;" type="text" value="">
@@ -302,31 +308,32 @@ if ($mode == 'app') {
 <input class="text" size=30 id="findbox" style="width:36%;" type="text" value="">
 <label> to </label>
 <input class="text" size=30 id="replacebox" style="width:36%;" type="text" value="">
-<input type="button" class="actionButton" value=">" id="replaceButton" onclick="replaceText(findbox.value); countText();">
+<input type="button" onmouseover="playAudio(soundPlayer, 'default.flac');" class="actionButton" value=">" id="replaceButton" onclick="replaceText(findbox.value); countText();">
 <br>
 <label id="statusBar" style="width:98%;"></label>
 <?php } elseif ($mode == 'menu') { ?>
-<img class="hover" style="height:22%;position:relative;" src="sys.back.png?rev=<?=time();?>" title="Background Preview" onclick="window.location.href = 'index.php?mode=view';">
-<img class="hover" style="height:22%;position:relative;" src="sys.files.png?rev=<?=time();?>" title="File Explorer" onclick="window.location.href = 'index.php?mode=glob';">
-<img class="hover" style="height:22%;position:relative;" src="sys.fon.png?rev=<?=time();?>" title="Fonts" onclick="window.location.href = 'index.php?mode=glob&q=.ttf,.otf,.ttc';">
-<img class="hover" style="height:22%;position:relative;" src="sys.setup.png?rev=<?=time();?>" title="Install Software" onclick="window.location.href = 'index.php?mode=get';">
-<img class="hover" style="height:22%;position:relative;"  src="sys.apps.png?rev=<?=time();?>" title="Installed Programs" onclick="window.location.href = 'index.php?mode=app';">
-<img class="hover" style="height:22%;position:relative;" src="sys.txt.png?rev=<?=time();?>" title="My Documents" onclick="window.location.href = 'index.php?mode=glob&q=.txt,.pdf,.odt,.doc';">
-<img class="hover" style="height:22%;position:relative;" src="sys.aud.png?rev=<?=time();?>" title="My Music" onclick="window.location.href = 'index.php?mode=glob&q=.mp3,.aac,.flac,.mid';">
-<img class="hover" style="height:22%;position:relative;" src="sys.img.png?rev=<?=time();?>" title="My Pictures" onclick="window.location.href = 'index.php?mode=glob&q=.png,.gif,.svg,.jpg';">
-<img class="hover" style="height:22%;position:relative;" src="sys.vid.png?rev=<?=time();?>" title="My Videos" onclick="window.location.href = 'index.php?mode=glob&q=.mp4,.webm,.mkv';">
-<img class="hover" style="height:22%;position:relative;" src="sys.edit.png?rev=<?=time();?>" title="Notepad" onclick="window.location.href = 'index.php?mode=edit&name=file&lock=true';">
-<img class="hover" style="height:22%;position:relative;" src="sys.pkg.png?rev=<?=time();?>" title="Remove Software" onclick="window.location.href = 'index.php?mode=pkg';">
-<img class="hover" style="height:22%;position:relative;" src="sys.settings.png?rev=<?=time();?>" title="System Settings" onclick="window.location.href = 'index.php?mode=set';">
+<img class="hover" onmouseover="playAudio(soundPlayer, 'default.flac');" style="height:22%;position:relative;" src="sys.back.png?rev=<?=time();?>" title="Background Preview" onclick="window.location.href = 'index.php?mode=view';">
+<img class="hover" onmouseover="playAudio(soundPlayer, 'default.flac');" style="height:22%;position:relative;" src="sys.files.png?rev=<?=time();?>" title="File Explorer" onclick="window.location.href = 'index.php?mode=glob';">
+<img class="hover" onmouseover="playAudio(soundPlayer, 'default.flac');" style="height:22%;position:relative;" src="sys.fon.png?rev=<?=time();?>" title="Fonts" onclick="window.location.href = 'index.php?mode=glob&q=.ttf,.otf,.ttc';">
+<img class="hover" onmouseover="playAudio(soundPlayer, 'default.flac');" style="height:22%;position:relative;" src="sys.setup.png?rev=<?=time();?>" title="Install Software" onclick="window.location.href = 'index.php?mode=get';">
+<img class="hover" onmouseover="playAudio(soundPlayer, 'default.flac');" style="height:22%;position:relative;"  src="sys.apps.png?rev=<?=time();?>" title="Installed Programs" onclick="window.location.href = 'index.php?mode=app';">
+<img class="hover" onmouseover="playAudio(soundPlayer, 'default.flac');" style="height:22%;position:relative;" src="sys.txt.png?rev=<?=time();?>" title="My Documents" onclick="window.location.href = 'index.php?mode=glob&q=.txt,.pdf,.odt,.doc';">
+<img class="hover" onmouseover="playAudio(soundPlayer, 'default.flac');" style="height:22%;position:relative;" src="sys.aud.png?rev=<?=time();?>" title="My Music" onclick="window.location.href = 'index.php?mode=glob&q=.mp3,.aac,.flac,.mid';">
+<img class="hover" onmouseover="playAudio(soundPlayer, 'default.flac');" style="height:22%;position:relative;" src="sys.img.png?rev=<?=time();?>" title="My Pictures" onclick="window.location.href = 'index.php?mode=glob&q=.png,.gif,.svg,.jpg';">
+<img class="hover" onmouseover="playAudio(soundPlayer, 'default.flac');" style="height:22%;position:relative;" src="sys.vid.png?rev=<?=time();?>" title="My Videos" onclick="window.location.href = 'index.php?mode=glob&q=.mp4,.webm,.mkv';">
+<img class="hover" onmouseover="playAudio(soundPlayer, 'default.flac');" style="height:22%;position:relative;" src="sys.edit.png?rev=<?=time();?>" title="Notepad" onclick="window.location.href = 'index.php?mode=edit&name=file&lock=true';">
+<img class="hover" onmouseover="playAudio(soundPlayer, 'default.flac');" style="height:22%;position:relative;" src="sys.pkg.png?rev=<?=time();?>" title="Remove Software" onclick="window.location.href = 'index.php?mode=pkg';">
+<img class="hover" onmouseover="playAudio(soundPlayer, 'default.flac');" style="height:22%;position:relative;" src="sys.settings.png?rev=<?=time();?>" title="System Settings" onclick="window.location.href = 'index.php?mode=set';">
 <?php } ?>
 </div>
 <div class='bottom'>
-<img class="hover" style="height:84%;position:relative;" src="sys.start.png?rev=<?=time();?>" onclick="window.location.href = 'index.php?mode=menu';">
-<img class="hover" style="height:84%;position:relative;" src="sys.back.png?rev=<?=time();?>" onclick="window.location.href = 'index.php?mode=view';">
-<img class="hover" style="height:84%;position:relative;" src="sys.settings.png?rev=<?=time();?>" onclick="window.location.href = 'index.php?mode=set';">
-<img class="hover" style="height:84%;position:relative;" src="sys.upd.png?rev=<?=time();?>" onclick="get('i','','from','windos','','flossely');">
-<img class="hover" style="height:84%;position:relative;" src="sys.exit.png?rev=<?=time();?>" onclick="window.location.href = '../';">
+<img class="hover" onmouseover="playAudio(soundPlayer, 'default.flac');" style="height:84%;position:relative;" src="sys.start.png?rev=<?=time();?>" onclick="window.location.href = 'index.php?mode=menu';">
+<img class="hover" onmouseover="playAudio(soundPlayer, 'default.flac');" style="height:84%;position:relative;" src="sys.back.png?rev=<?=time();?>" onclick="window.location.href = 'index.php?mode=view';">
+<img class="hover" onmouseover="playAudio(soundPlayer, 'default.flac');" style="height:84%;position:relative;" src="sys.settings.png?rev=<?=time();?>" onclick="window.location.href = 'index.php?mode=set';">
+<img class="hover" style="height:84%;position:relative;" src="sys.upd.png?rev=<?=time();?>" onmouseover="playAudio(soundPlayer, 'default.flac');" onclick="get('i','','from','windos','','flossely');">
+<img class="hover" style="height:84%;position:relative;" src="sys.exit.png?rev=<?=time();?>" onmouseover="playAudio(soundPlayer, 'default.flac');" onclick="window.location.href = '../';">
 </div>
 <audio id="audioPlayer">
+<audio id="soundPlayer" <?php if (!$sounds) { ?>muted="muted"<?php } ?>>
 </body>
 </html>
