@@ -203,7 +203,7 @@ window.onload = function() {
 if ($mode == 'app') {
     foreach ($list as $key=>$value) {
         $appCont = file_get_contents($value);
-        $appExp = explode('=||=', $appCont);
+        $appExp = explode('|[1]|', $appCont);
         $appTitle = $appExp[0];
         $appIcon = (file_exists($appExp[1])) ? $appExp[1] : 'sys.app.png';
         $appAction = $appExp[2];
@@ -214,10 +214,10 @@ if ($mode == 'app') {
     foreach ($list as $key=>$value) {
         $pkgName = basename($value, '.pkg');
         $pkgCont = file_get_contents($value);
-        $pkgExp = explode('=|1|=', $pkgCont);
+        $pkgExp = explode('|[1]|', $pkgCont);
         $pkgHead = $pkgExp[0];
         $pkgBody = $pkgExp[1];
-        $pkgHeadExp = explode('=|2|=', $pkgHead);
+        $pkgHeadExp = explode('|[2]|', $pkgHead);
         $pkgUser = $pkgHeadExp[0];
         $pkgType = $pkgHeadExp[1];
         $pkgVersion = $pkgHeadExp[2];
@@ -249,7 +249,7 @@ if ($mode == 'app') {
                 $type = 'Package';
             } elseif ($extension == 'app') {
                 $appOpen = file_get_contents($value);
-                $appDel = explode('=||=', $appOpen);
+                $appDel = explode('|[1]|', $appOpen);
                 $appTitle = $appDel[0];
                 $appIcon = $appDel[1];
                 $appLink = $appDel[2];
