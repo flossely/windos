@@ -1,9 +1,5 @@
 <?php
-if (file_exists('sounds')) {
-    $sounds = boolval(file_get_contents('sounds'));
-} else {
-    $sounds = false;
-}
+include 'syspkg.php';
 $mode = ($_REQUEST['mode']) ? $_REQUEST['mode'] : '';
 if ($mode == 'app') {
     $dir = '.';
