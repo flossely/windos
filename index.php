@@ -301,7 +301,7 @@ if ($mode == 'app') {
 <input id='getButton' type="button" class="actionButton" onmouseover="playAudio(soundPlayer, 'default.flac?rev=<?=time();?>');" onclick="get('r',enterHost.options[enterHost.selectedIndex].id,enterPkg.value,enterRepo.value,enterBranch.value,enterUser.value,false);" value=">">
 </p>
 <p align='center'>Remove: 
-<input type="text" id="enterPkg" style="width:12%;" placeholder="Package" value="from">
+<input type="text" id="enterPkg" style="width:12%;" placeholder="Package" value="">
 <input id='getButton' type="button" class="actionButton" onmouseover="playAudio(soundPlayer, 'default.flac?rev=<?=time();?>');" onclick="get('d','',enterPkg.value,'from','','here',false);" value=">">
 </p>
 <p align='center'>Execute JS code:<br><input type='text' style="width:45%;position:relative;" value='' onkeydown="if (event.keyCode == 13) {
