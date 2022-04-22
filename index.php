@@ -277,6 +277,7 @@ if ($mode == 'app') {
 ?>
 <img class="hover" onmouseover="playAudio(soundPlayer, '<?=$soundlib[rand(0,$soundct)];?>?rev=<?=time();?>');" style="height:18%;position:relative;" src="<?=$icon;?>?rev=<?=time();?>" name="<?=$value;?>" title="<?=$value;?>" onclick="<?=$link;?>">
 <?php }} elseif ($mode == 'get') { ?>
+<?php include 'getman.php'; ?>
 <p align='center'>Execute JS code:<br><input type='text' style="width:45%;position:relative;" value='' onkeydown="if (event.keyCode == 13) {
     eval(this.value);
 }"></p>
