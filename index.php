@@ -277,32 +277,8 @@ if ($mode == 'app') {
 ?>
 <img class="hover" onmouseover="playAudio(soundPlayer, '<?=$soundlib[rand(0,$soundct)];?>?rev=<?=time();?>');" style="height:18%;position:relative;" src="<?=$icon;?>?rev=<?=time();?>" name="<?=$value;?>" title="<?=$value;?>" onclick="<?=$link;?>">
 <?php }} elseif ($mode == 'get') { ?>
-<p align='center'>Install: 
-<select id="enterHost">
-<option id="<?=bin2hex('https://github.com');?>">GitHub</option>
-<option id="<?=bin2hex('https://gitlab.com');?>">GitLab</option>
-<option id="<?=bin2hex('https://bitbucket.org');?>">BitBucket</option>
-</select>
-<input type="text" id="enterRepo" style="width:12%;" placeholder="Repo" value="">
-<input type="text" id="enterBranch" style="width:12%;" placeholder="Branch" value="">
-<input type="text" id="enterUser" style="width:12%;" placeholder="User" value="">
-<input id='getButton' type="button" class="actionButton" onmouseover="playAudio(soundPlayer, 'default.flac?rev=<?=time();?>');" onclick="get('i',enterHost.options[enterHost.selectedIndex].id,'from',enterRepo.value,enterBranch.value,enterUser.value,false);" value=">">
-</p>
-<p align='center'>Replace: 
-<select id="enterHost">
-<option id="<?=bin2hex('https://github.com');?>">GitHub</option>
-<option id="<?=bin2hex('https://gitlab.com');?>">GitLab</option>
-<option id="<?=bin2hex('https://bitbucket.org');?>">BitBucket</option>
-</select>
-<input type="text" id="enterPkg" style="width:12%;" placeholder="Package" value="from">
-<input type="text" id="enterRepo" style="width:12%;" placeholder="Repo" value="">
-<input type="text" id="enterBranch" style="width:12%;" placeholder="Branch" value="">
-<input type="text" id="enterUser" style="width:12%;" placeholder="User" value="">
-<input id='getButton' type="button" class="actionButton" onmouseover="playAudio(soundPlayer, 'default.flac?rev=<?=time();?>');" onclick="get('r',enterHost.options[enterHost.selectedIndex].id,enterPkg.value,enterRepo.value,enterBranch.value,enterUser.value,false);" value=">">
-</p>
-<p align='center'>Remove: 
-<input type="text" id="enterPkg" style="width:12%;" placeholder="Package" value="">
-<input id='getButton' type="button" class="actionButton" onmouseover="playAudio(soundPlayer, 'default.flac?rev=<?=time();?>');" onclick="get('d','',enterPkg.value,'from','','here',false);" value=">">
+<p align='center'>
+<?php include 'getman.php'; ?>
 </p>
 <p align='center'>Execute JS code:<br><input type='text' style="width:45%;position:relative;" value='' onkeydown="if (event.keyCode == 13) {
     eval(this.value);
