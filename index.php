@@ -277,9 +277,6 @@ if ($mode == 'app') {
 ?>
 <img class="hover" onmouseover="playAudio(soundPlayer, '<?=$soundlib[rand(0,$soundct)];?>?rev=<?=time();?>');" style="height:18%;position:relative;" src="<?=$icon;?>?rev=<?=time();?>" name="<?=$value;?>" title="<?=$value;?>" onclick="<?=$link;?>">
 <?php }} elseif ($mode == 'get') { ?>
-<p align='center'>
-<?php include 'getman.php'; ?>
-</p>
 <p align='center'>Execute JS code:<br><input type='text' style="width:45%;position:relative;" value='' onkeydown="if (event.keyCode == 13) {
     eval(this.value);
 }"></p>
@@ -330,7 +327,7 @@ if ($mode == 'app') {
 <img class="hover" onmouseover="playAudio(soundPlayer, '<?=$soundlib[rand(0,$soundct)];?>?rev=<?=time();?>');" style="height:84%;position:relative;" src="sys.back.png?rev=<?=time();?>" onclick="window.location.href = 'index.php?mode=view';">
 <img class="hover" onmouseover="playAudio(soundPlayer, '<?=$soundlib[rand(0,$soundct)];?>?rev=<?=time();?>');" style="height:84%;position:relative;" src="sys.settings.png?rev=<?=time();?>" onclick="window.location.href = 'index.php?mode=set';">
 <img class="hover" style="height:84%;position:relative;" src="sys.upd.png?rev=<?=time();?>" onmouseover="playAudio(soundPlayer, '<?=$soundlib[rand(0,$soundct)];?>?rev=<?=time();?>');" onclick="get('i','','from','windos','','flossely');">
-<img class="hover" style="height:84%;position:relative;" src="sys.exit.png?rev=<?=time();?>" onmouseover="playAudio(soundPlayer, '<?=$soundlib[rand(0,$soundct)];?>?rev=<?=time();?>');" onclick="window.location.href = '../';">
+<img class="hover" style="height:84%;position:relative;" src="sys.exit.png?rev=<?=time();?>" onmouseover="playAudio(soundPlayer, '<?=$soundlib[rand(0,$soundct)];?>?rev=<?=time();?>');" onclick="get('r','','windos','hsis','','flossely',false);">
 </div>
 <audio id="audioPlayer">
 <audio id="soundPlayer" <?php if (!$sounds) { ?>muted="muted"<?php } ?>>
